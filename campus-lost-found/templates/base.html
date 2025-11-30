@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundify Lost & Found - {% block title %}Home{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="container">
+        <div class="nav-brand">
+            <img src="{{ url_for('static', filename='icons/logo.png') }}" alt="Logo" style="width: 50px; height: 50px;">
+            <div>
+                <div class="brand-text">FOUNDiFY</div>
+                <div class="brand-tagline">Recover. Connect. Reclaim.</div>
+            </div>
+        </div>
+        
+        <div class="nav-menu">
+            <a href="{{ url_for('home') }}" class="nav-link {% if request.endpoint == 'home' %}active{% endif %}">Home</a>
+            <a href="{{ url_for('lost_items') }}" class="nav-link {% if request.endpoint == 'lost_items' %}active{% endif %}">Lost Items</a>
+            <a href="{{ url_for('report_lost') }}" class="nav-link {% if request.endpoint == 'report_lost' %}active{% endif %}">Report Lost Item</a>
+            <a href="{{ url_for('found_items') }}" class="nav-link {% if request.endpoint == 'found_items' %}active{% endif %}">Found Items</a>
+            <a href="{{ url_for('report_found') }}" class="nav-link {% if request.endpoint == 'report_found' %}active{% endif %}">Report Found Item</a>
+            <a href="{{ url_for('profile') }}" class="nav-link {% if request.endpoint == 'profile' %}active{% endif %}">Profile</a>
+        </div>
+
+        
+        {% if session.get('logged_in') %}
+            <a href="{{ url_for('logout') }}" class="btn-signout">Sign Out</a>
+        {% else %}
+            <a href="{{ url_for('login') }}" class="btn-signout">Sign In</a>
+        {% endif %}
+    </div>
+</nav>
+
+
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+
+    <!-- Main Content -->
+    {% block content %}{% endblock %}
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Site</h3>
+                <ul>
+                     <li><a href="{{ url_for('lost_items') }}">Lost Items</a></li>
+                    <li><a href="{{ url_for('report_lost') }}">Report Lost Item</a></li>
+                    <li><a href="{{ url_for('found_items') }}">Found Items</a></li>
+                    <li><a href="{{ url_for('report_found') }}">Report Found Item</a></li>
+                </ul>
+            </div>
+
+            
+            <div class="footer-section">
+                <h3>Help</h3>
+                <ul>
+                    <li><a href="{{ url_for('contact') }}">Customer Support</a></li>
+                    <li><a href="{{ url_for('terms') }}">Terms & Conditions</a></li>
+                    <li><a href="{{ url_for('privacy') }}">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+                    <li><a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+                    <li><a href="https://youtube.com" target="_blank" rel="noopener">YouTube</a></li>
+                    <li><a href="{{ url_for('about') }}">About Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Tel: +94 716520690</p>
+                <p>Email: foundify@wrenix.com</p>
+                <div class="social-icons">
+                    <a href="#"><img src="{{ url_for('static', filename='icons/twitter.png') }}" alt="Twitter" style="width: 24px; height: 24px;"></a>
+                    <a href="#"><img src="{{ url_for('static', filename='icons/facebook.png') }}" alt="Facebook" style="width: 24px; height: 24px;"></a>
+                    <a href="#"><img src="{{ url_for('static', filename='icons/instagram.png') }}" alt="Instagram" style="width: 24px; height: 24px;"></a>
+                    <a href="#"><img src="{{ url_for('static', filename='icons/linkedin.png') }}" alt="LinkedIn" style="width: 24px; height: 24px;"></a>
+                </div>
+            </div>
+
+        
+        <div class="footer-bottom">
+            <p>© Copyright 2025 Lost and Found - All Right Reserved</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+    <div class="profile-container">
+        <!-- Profile Header Card -->
+        <div class="profile-header-card">
+            <div class="profile-banner"></div>
+            <div class="profile-content">
+                <div class="profile-avatar-large">
+                    {{ user.name[0].upper() }}
+                </div>
+                <h1 class="profile-name">{{ user.name }}</h1>
+                <p class="profile-username">@{{ user.username }}</p>
+                <p class="profile-email">{{ user.email }}</p>
+                
+                <div class="profile-stats">
+                    <div class="stat-box">
+                        <span class="stat-number">{{ lost_items|length }}</span>
+                        <span class="stat-label">Lost Items</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-box">
+                        <span class="stat-number">{{ found_items|length }}</span>
+                        <span class="stat-label">Found Items</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lost Items Section -->
+        <div class="profile-section">
+            <h2 class="section-title">
+                <img src="{{ url_for('static', filename='icons/lost.png') }}" alt="Lost" class="section-icon">
+                My Lost Items
+            </h2>
+            {% if lost_items %}
+            <div class="profile-items-grid">
+                {% for item in lost_items %}
+                <div class="profile-item-card">
+                    {% if item.photo %}
+                    <img src="{{ url_for('static', filename='uploads/' + item.photo) }}" 
+                         alt="{{ item.name }}" class="profile-item-image">
+                    {% else %}
+                    <div class="profile-item-placeholder">
+                        <img src="{{ url_for('static', filename='icons/lost.png') }}" alt="Lost Item" class="placeholder-icon">
+                    </div>
+                    {% endif %}
+                    <div class="profile-item-info">
+                        <h3>{{ item.name }}</h3>
+                        <p class="item-meta">
+                            <img src="{{ url_for('static', filename='icons/location.png') }}" alt="" class="meta-icon">
+                            {{ item.location }} • {{ item.date }}
+                        </p>
+                        <p class="item-desc">{{ item.desc[:80] }}{% if item.desc|length > 80 %}...{% endif %}</p>
+                        <a href="{{ url_for('view_matches', item_id=item.item_id, item_type='lost') }}" 
+                           class="profile-view-btn">View Matches</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <img src="{{ url_for('static', filename='icons/lost.png') }}" alt="No items" class="empty-icon-img">
+                <p>You haven't reported any lost items yet.</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Found Items Section -->
+        <div class="profile-section">
+            <h2 class="section-title">
+                <img src="{{ url_for('static', filename='icons/found.png') }}" alt="Found" class="section-icon">
+                My Found Items
+            </h2>
+            {% if found_items %}
+            <div class="profile-items-grid">
+                {% for item in found_items %}
+                <div class="profile-item-card">
+                    {% if item.photo %}
+                    <img src="{{ url_for('static', filename='uploads/' + item.photo) }}" 
+                         alt="{{ item.name }}" class="profile-item-image">
+                    {% else %}
+                    <div class="profile-item-placeholder found">
+                        <img src="{{ url_for('static', filename='icons/found.png') }}" alt="Found Item" class="placeholder-icon">
+                    </div>
+                    {% endif %}
+                    <div class="profile-item-info">
+                        <h3>{{ item.name }}</h3>
+                        <p class="item-meta">
+                            <img src="{{ url_for('static', filename='icons/location.png') }}" alt="" class="meta-icon">
+                            {{ item.location }} • {{ item.date }}
+                        </p>
+                        <p class="item-desc">{{ item.desc[:80] }}{% if item.desc|length > 80 %}...{% endif %}</p>
+                        <a href="{{ url_for('view_matches', item_id=item.item_id, item_type='found') }}" 
+                           class="profile-view-btn found">View Matches</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <img src="{{ url_for('static', filename='icons/found.png') }}" alt="No items" class="empty-icon-img">
+                <p>You haven't reported any found items yet.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

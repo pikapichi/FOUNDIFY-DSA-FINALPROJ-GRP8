@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Customer Support{% endblock %}
+
+{% block content %}
+<div class="info-page">
+    <div class="info-container">
+        <h1 class="info-title">Customer <span class="highlight">Support</span></h1>
+        
+        <div class="info-content">
+            <section class="info-section">
+                <h2>Get Help</h2>
+                <p>Need assistance? We're here to help you recover your lost items!</p>
+            </section>
+            
+            <section class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon-wrapper">
+                        <img src="{{ url_for('static', filename='icons/email.png') }}" alt="Email" class="contact-icon-img">
+                    </div>
+                    <h3>Email Support</h3>
+                    <p>support@foundify.com</p>
+                    <p class="contact-time">Response within 24 hours</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon-wrapper">
+                        <img src="{{ url_for('static', filename='icons/chat.png') }}" alt="Chat" class="contact-icon-img">
+                    </div>
+                    <h3>Live Chat</h3>
+                    <p>Available on campus</p>
+                    <p class="contact-time">Mon-Fri, 9AM-5PM</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon-wrapper">
+                        <img src="{{ url_for('static', filename='icons/location.png') }}" alt="Location" class="contact-icon-img">
+                    </div>
+                    <h3>Campus Office</h3>
+                    <p>Lost & Found Desk</p>
+                    <p class="contact-time">Building A, Room 101</p>
+                </div>
+            </section>
+            
+            <section class="info-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <div class="faq-header">
+                        <img src="{{ url_for('static', filename='icons/lost.png') }}" alt="" class="faq-icon">
+                        <h3>How do I report a lost item?</h3>
+                    </div>
+                    <p>Click "Report Lost Item" from the navigation menu, fill in the details including description, location, date, and optional photo. Our system will automatically search for matches using our intelligent algorithm.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-header">
+                        <img src="{{ url_for('static', filename='icons/found.png') }}" alt="" class="faq-icon">
+                        <h3>What if I find an item on campus?</h3>
+                    </div>
+                    <p>Report it as a "Found Item" with as much detail as possible including photos. The owner will be notified automatically if there's a potential match based on our similarity scoring algorithm.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-header">
+                        <img src="{{ url_for('static', filename='icons/search.png') }}" alt="" class="faq-icon">
+                        <h3>How does the matching work?</h3>
+                    </div>
+                    <p>Our advanced algorithm compares items based on five factors: name similarity (40%), description (20%), category match (20%), location match (15%), and date proximity (5%). You'll see match scores from 0-100% with a minimum 30% threshold.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

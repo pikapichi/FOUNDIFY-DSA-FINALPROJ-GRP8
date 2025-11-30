@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Find & Recover<br><span class="highlight">With Ease</span></h1>
+                <p class="hero-subtitle">Experience effortless recovery with our dedicated lost and found service.</p>
+            </div>
+            <div class="hero-actions">
+    <a href="{{ url_for('report_lost') }}" class="action-card lost-card">
+        <div class="card-content">
+            <img src="{{ url_for('static', filename='icons/lost.png') }}" alt="Lost" class="card-icon-img">
+            <span class="card-title">Lost</span>
+        </div>
+    </a>
+    <a href="{{ url_for('report_found') }}" class="action-card found-card">
+        <div class="card-content">
+            <img src="{{ url_for('static', filename='icons/found.png') }}" alt="Found" class="card-icon-img">
+            <span class="card-title">Found</span>
+        </div>
+    </a>
+</div>
+
+        </div>
+        <div class="hero-images">
+        <div class="hero-img-box">
+            <img src="{{ url_for('static', filename='images/laptop.jpg') }}" alt="Laptop" class="hero-img-content">
+            <span class="hero-label">Laptop</span>
+        </div>
+        <div class="hero-img-box">
+            <img src="{{ url_for('static', filename='images/notebook.jpg') }}" alt="Notebook" class="hero-img-content">
+            <span class="hero-label">Notebook</span>
+        </div>
+            <div class="hero-img-box">
+            <img src="{{ url_for('static', filename='images/watch.jpg') }}" alt="Watch" class="hero-img-content">
+            <span class="hero-label">Watch</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="welcome-modal" id="welcomeModal">
+    <div class="modal-content">
+        <h2>Welcome to Our Lost and Found Website!</h2>
+        <p>We're excited to help you find and recover lost items. Easily report lost belongings, search for found items, and connect with others. Our user-friendly platform aims to reunite you with your lost possessions quickly and efficiently.</p>
+        <p>Thank you for choosing our service. If you need assistance, feel free to contact us.</p>
+        <p>Happy searching and best of luck!</p>
+        <button onclick="closeModal()" class="btn-primary">Got it!</button>
+    </div>
+</div>
+
+<script>
+function closeModal() {
+    document.getElementById('welcomeModal').style.display = 'none';
+}
+
+// Show modal on first visit
+if (!sessionStorage.getItem('visitedBefore')) {
+    document.getElementById('welcomeModal').style.display = 'flex';
+    sessionStorage.setItem('visitedBefore', 'true');
+}
+</script>
+{% endblock %}
