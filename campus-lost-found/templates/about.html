@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<div class="about-us-page">
+    <div class="container">
+        <h1 class="about-title">About Us</h1>
+        
+        <div class="about-content">
+            <h3>Welcome to Campus Lost & Found</h3>
+            <p>We are a team of dedicated computer science students passionate about creating innovative solutions to everyday campus problems. Our Lost & Found system combines cutting-edge data structures and algorithms with a user-friendly interface to help reunite people with their lost belongings.</p>
+        </div>
+
+        <div class="team-section">
+            <h2 class="team-member-label" style="text-align: center; font-size: 32px; margin-bottom: 40px;">Our Team</h2>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-member-label">Lead Developer</div>
+                    <div class="team-member-avatar">ZK</div>
+                    <div class="team-member-name">Zaki A. Glorioso</div>
+                    <div class="team-member-role">Backend & Algorithms</div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-label">Frontend Developer</div>
+                    <div class="team-member-avatar">ZK</div>
+                    <div class="team-member-name">Zaki A. Glorioso</div>
+                    <div class="team-member-role">UI/UX Design</div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-label">Data Structures</div>
+                    <div class="team-member-avatar">KF</div>
+                    <div class="team-member-name">King Florenz Ligarte</div>
+                    <div class="team-member-role">DSA Implementation</div>
+                </div>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-member-label">Database Manager</div>
+                    <div class="team-member-avatar">PAT</div>
+                    <div class="team-member-name">Patrick Carpio</div>
+                    <div class="team-member-role">Data Management</div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-label">Testing Lead</div>
+                    <div class="team-member-avatar">EJ</div>
+                    <div class="team-member-name">Ernst Jhon Nool</div>
+                    <div class="team-member-role">Quality Assurance</div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-label">Project Manager</div>
+                    <div class="team-member-avatar">DR</div>
+                    <div class="team-member-name">Dwight Ramos</div>
+                    <div class="team-member-role">Coordination</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mission-box">
+            <h2>Our Mission</h2>
+            <p>Our mission is to create a seamless, efficient platform that helps campus community members quickly recover their lost items. By leveraging advanced data structures like HashMaps, Tries, and Binary Search Trees, we've built a smart matching system that connects lost items with their rightful owners.</p>
+            
+            <p>We believe that technology should make life easier, and losing something valuable shouldn't be a source of ongoing stress. Our platform aims to turn the frustration of losing an item into the joy of finding it again.</p>
+            
+            <p>Through intelligent matching algorithms and an intuitive user interface, we're committed to making the campus a more connected and helpful community where everyone looks out for each other.</p>
+        </div>
+
+        <div class="about-content">
+            <h3>What Makes Us Unique</h3>
+            <p><strong>Smart Matching Algorithm:</strong> Our similarity scoring system analyzes multiple factors including item name, description, category, location, and date to provide the most relevant matches.</p>
+            
+            <p><strong>Fast Search:</strong> Using Trie data structures, we provide instant autocomplete suggestions as you type, making it faster to report and search for items.</p>
+            
+            <p><strong>Organized Data:</strong> Binary Search Trees help us efficiently organize items by category and date, ensuring quick retrieval and filtering.</p>
+            
+            <p><strong>User-Friendly Design:</strong> Our modern, gradient-themed interface is both beautiful and functional, designed with Figma and implemented using the latest web technologies.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

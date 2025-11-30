@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+    <div class="container">
+        <h1 class="page-title profile-title">Profile</h1>
+        
+        <div class="profile-card">
+            <div class="profile-avatar">
+                {{ session.get('name', 'U')[0].upper() }}
+            </div>
+            
+            <div class="profile-info">
+                <div class="profile-field">
+                    <label>Name :</label>
+                    <div class="field-value">{{ user.get('name', 'Not set') }}</div>
+                </div>
+                
+                <div class="profile-field">
+                    <label>Email :</label>
+                    <div class="field-value">{{ user.get('email', 'Not set') }}</div>
+                </div>
+                
+                <button class="btn-save-changes" onclick="alert('Profile editing coming soon!')">Save Changes</button>
+            </div>
+        </div>
+        
+        <div class="my-items-section">
+            <h2 class="my-items-title">My Items</h2>
+            
+            <div class="profile-actions">
+                <button class="btn-saved">Saved</button>
+                <a href="{{ url_for('report_lost') }}" class="btn-report-view" style="text-decoration: none; display: inline-block;">Report</a>
+
+            </div>
+            
+            <div class="user-items-grid">
+                {% set user_lost_items = [] %}
+                {% set user_found_items = [] %}
+                
+                {% for item_id, item in lost_items.items() %}
+                    {% if item.user_name == session.get('name') %}
+                        {% set _ = user_lost_items.append(item) %}
+                    {% endif %}
+                {% endfor %}
+                
+                {% for item_id, item in found_items.items() %}
+                    {% if item.user_name == session.get('name') %}
+                        {% set _ = user_found_items.append(item) %}
+                    {% endif %}
+                {% endfor %}
+                
+                {% set all_user_items = user_lost_items + user_found_items %}
+                
+                {% if all_user_items %}
+                    {% for item in all_user_items[:3] %}
+                    <div class="item-card">
+                        <div class="card-header">
+                            <div class="user-avatar">{{ item.user_name[0].upper() }}</div>
+                            <div class="user-info">
+                                <div class="item-name">{{ item.user_name }}</div>
+                                <div class="item-date">{{ item.date }}</div>
+                            </div>
+                        </div>
+                        <div class="card-image">
+                            {% if item.photo %}
+                            <img src="{{ url_for('static', filename='uploads/' + item.photo) }}" alt="{{ item.name }}">
+                            {% else %}
+                            <div class="placeholder-image">
+                                <div class="shape triangle"></div>
+                                <div class="shape square"></div>
+                                <div class="shape circle"></div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <div class="item-title">{{ item.name }}</div>
+                            <div class="item-location">📍 {{ item.location }}</div>
+                            <p class="item-description">{{ item.desc[:80] }}{% if item.desc|length > 80 %}...{% endif %}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ url_for('view_matches', item_id=item.id, item_type='lost' if item.id.startswith('L') else 'found') }}" class="btn-contact">View Matches</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="no-items" style="grid-column: 1 / -1;">
+                        <h3>No Items Yet</h3>
+                        <p>You haven't reported any lost or found items yet.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
